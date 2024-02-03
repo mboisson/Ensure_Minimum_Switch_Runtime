@@ -169,7 +169,7 @@ def checkAndTurnOn() {
         }
     }
     else {
-        logger("debug", "control switch ${control_switch} is on, not starting ${monitor_switch}")
+        logger("debug", "control switch ${control_switch} is off, not starting ${monitor_switch}")
     }
     resetCumulativeTime()
 }
