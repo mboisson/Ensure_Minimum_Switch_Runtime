@@ -42,7 +42,7 @@ def pageConfig() {
 		}
 		
 		section("Disable switch"){
-			input "control_switch", "capability.switch", title: "Disable app if switch is on", multiple: false, required: false
+			input "control_switch", "capability.switch", title: "Control of the monitor switch will only happen if switch is on", multiple: false, required: false
 		}
 		section("Switch to monitor and turn on"){
 			input "monitor_switch", "capability.switch", title: "Switch", multiple: false, require: true
@@ -156,7 +156,7 @@ def checkAndTurnOn() {
     logger("info", "running checkAndTurnOn")
     cumulative_runtime_m = state.cumulative_time_s
     logger("debug", "cumulative runtime is ${cumulative_runtime_m} minutes")
-    if (control_switch == null || control_switch.currentValue("switch") != "off") {
+    if (control_switch == null || control_switch.currentValue("switch") == "on") {
         missing_runtime = settings.minimum_runtime - cumulative_runtime_m 
         if (missing_runtime > 0) {
             logger("debug", "missing ${missing_runtime} minutes, turning ${monitor_switch} on for that duration")
